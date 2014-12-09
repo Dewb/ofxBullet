@@ -134,6 +134,11 @@ btRigidBody* ofxBulletBaseShape::getRigidBody() {
 }
 
 //--------------------------------------------------------------
+const btRigidBody* ofxBulletBaseShape::getRigidBody() const {
+    return _rigidBody;
+}
+
+//--------------------------------------------------------------
 void* ofxBulletBaseShape::getData() const {
 	return _rigidBody->getUserPointer();
 }
@@ -266,6 +271,19 @@ void ofxBulletBaseShape::setActivationState( int a_state ) {
 		_rigidBody->setActivationState( a_state );
 	}
 }
+
+//--------------------------------------------------------------
+void ofxBulletBaseShape::setPosition( const ofVec3f& pos ) {
+    if(checkCreate()) {
+        if(isKinematic()) {
+            // todo: set position via transform on rigid body
+        }
+    }
+}
+
+
+
+
 /**************************************************************/
 
 
@@ -354,6 +372,11 @@ void ofxBulletBaseShape::activate() {
 //--------------------------------------------------------------
 void ofxBulletBaseShape::enableKinematic() {
 	getRigidBody()->setCollisionFlags( getRigidBody()->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT );
+}
+
+//--------------------------------------------------------------
+bool ofxBulletBaseShape::isKinematic() const {
+    return getRigidBody()->getCollisionFlags() & btCollisionObject::CF_KINEMATIC_OBJECT;
 }
 
 //--------------------------------------------------------------

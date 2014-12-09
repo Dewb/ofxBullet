@@ -38,6 +38,7 @@ public:
 	
 	// GETTERS //
 	btRigidBody*	getRigidBody();
+    const btRigidBody*	getRigidBody() const;
 	virtual void*	getData() const;
 	btCollisionShape* getCollisionShape() const;
 	int				getActivationState();
@@ -86,6 +87,11 @@ public:
 	// if you want to control the object. Make sure to have a mass of 0.f
 	// and manipulate the rigid body and then call activate() //
 	void enableKinematic();
+    
+    bool isKinematic() const;
+    
+    // Only valid for kinematic objects
+    void setPosition(const ofVec3f& pos);
 	
 	// CHECKERS //
 	bool checkInit();

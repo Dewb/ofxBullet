@@ -95,6 +95,3 @@ static void ofGetOpenGLMatrixFromRigidBody( btRigidBody* a_rb, btScalar* a_m ) {
 	myMotionState->m_graphicsWorldTrans.getOpenGLMatrix( a_m );
 }
 
-
-
-

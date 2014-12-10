@@ -276,7 +276,9 @@ void ofxBulletBaseShape::setActivationState( int a_state ) {
 void ofxBulletBaseShape::setPosition( const ofVec3f& pos ) {
     if(checkCreate()) {
         if(isKinematic()) {
-            // todo: set position via transform on rigid body
+            btTransform t;
+            t.setOrigin(btVector3(pos.x, pos.y, pos.z));
+            getRigidBody()->getMotionState()->setWorldTransform(t);
         }
     }
 }
